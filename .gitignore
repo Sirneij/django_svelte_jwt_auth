@@ -1,0 +1,69 @@
+# IDEs
+.project
+.pydevproject
+.idea
+.vscode
+.settings
+.DS_Store
+
+# Random files
+*~
+\#*
+tags
+
+venv/
+virtualenv/
+virtaulenv/
+htmlcov/
+src/static_root/*
+bvn_images/*
+!bvn_images/.gitkeep
+
+.env
+
+# Python compiled byte code
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# SQLite3 database
+*.sqlite
+
+# Docker volume data
+*.rdb
+*.pid
+celerybeat-schedule.*
+
+# Node modules
+node_modules/
+npm-debug.log
+
+# Coverage
+coverage/
+.coverage*
+.cache
+.coverage.ubuntu.*
+
+# static validation files
+.eslintrc
+.sass-lint.yml
+.prospector.yml
+.coveragerc
+.prettierrc
+.mypy_cache
+
+
+# Celery files
+celerybeat-schedule
+celerybeat.pid
+
+# Xero certificate
+src/bloombackend/certificates/*-prod.*
+
+dev_run.sh
+qc_scripts
+prod_2.py
+todo.txt
+
+kyc/*
+!src/lib/validators/kyc
