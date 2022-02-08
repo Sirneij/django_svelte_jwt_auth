@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'globals';
+@import 'header';
+@import 'about';
+@import 'home';
+@import 'form';
+
+#svelte {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}

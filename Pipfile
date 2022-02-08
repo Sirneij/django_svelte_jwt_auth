@@ -10,6 +10,7 @@ djangorestframework-simplejwt = "*"
 gunicorn = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
