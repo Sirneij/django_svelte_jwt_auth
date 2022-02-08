@@ -27,7 +27,7 @@ __pycache__/
 *.pyc
 
 # SQLite3 database
-*.sqlite
+*/*.sqlite
 
 # Docker volume data
 *.rdb
