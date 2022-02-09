@@ -26,5 +26,8 @@
 </main>
 
 <footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	<p>
+		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit. Coded by
+		<a href="https://github.com/Sirneij/">John O. Idogun</a>
+	</p>
 </footer>

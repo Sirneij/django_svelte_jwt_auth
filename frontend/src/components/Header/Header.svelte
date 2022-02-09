@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import logo from './svelte-logo.svg';
+	import john from './john.svg';
 	import { userData } from '../../store/userStore';
 	import { logOutUser } from '$lib/requestUtils';
 </script>
@@ -42,6 +43,8 @@
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<a href="https://github.com/Sirneij/">
+			<img src={john} alt="John O. Idogun" />
+		</a>
 	</div>
 </header>
