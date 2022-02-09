@@ -1,5 +1,6 @@
 <script>
 	import { userData } from '../store/userStore';
+	import { notificationData } from '../store/notificationStore';
 
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
@@ -15,12 +16,29 @@
 			);
 			userData.set(response);
 		}
+		const notifyEl = document.getElementsByClassName('notification');
+		if (notifyEl && $notificationData !== '') {
+			setTimeout(() => {
+				notifyEl.display = 'none';
+				notificationData.set('');
+			}, 5000);
+		}
 	});
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
+
+{#if $notificationData}
+	<p
+		class="notification"
+		in:fly={{ x: -200, duration: 1000, delay: 1000 }}
+		out:fly={{ x: -200, duration: 1000 }}
+	>
+		{$notificationData}
+	</p>
+{/if}
 
 <section in:fly={{ y: -100, duration: 500, delay: 500 }} out:fly={{ duration: 500 }}>
 	<h1>
