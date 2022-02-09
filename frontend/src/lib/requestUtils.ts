@@ -1,6 +1,8 @@
 import { browser } from '$app/env';
 import { goto } from '$app/navigation';
+import { notificationData } from '../store/notificationStore';
 import { userData } from '../store/userStore';
+
 import { BASE_API_URI } from './constants';
 
 export const browserGet = (key: string):string | undefined => {
@@ -107,5 +109,6 @@ export const logOutUser = async () => {
 	}
 	localStorage.removeItem('refreshToken');
 	userData.set({});
+	notificationData.set('You have logged out.')
 	await goto('/accounts/login');
 };

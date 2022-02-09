@@ -33,8 +33,8 @@
 {#if $notificationData}
 	<p
 		class="notification"
-		in:fly={{ x: -200, duration: 1000, delay: 1000 }}
-		out:fly={{ x: -200, duration: 1000 }}
+		in:fly={{ x: 200, duration: 1000, delay: 1000 }}
+		out:fly={{ x: 200, duration: 1000 }}
 	>
 		{$notificationData}
 	</p>

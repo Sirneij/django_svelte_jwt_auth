@@ -1,9 +1,11 @@
 <script>
+	import { notificationData } from '../../../store/notificationStore';
 	import { post, browserSet, browserGet } from '$lib/requestUtils';
 	import { goto } from '$app/navigation';
 	import { BASE_API_URI } from '$lib/constants';
 	import { fly } from 'svelte/transition';
-	import { notificationData } from '../../../store/notificationStore';
+
+	import { onMount } from 'svelte';
 
 	let email = '',
 		password = '',
@@ -27,11 +29,29 @@
 			await goto('/');
 		}
 	};
+	onMount(() => {
+		const notifyEl = document.getElementsByClassName('notification');
+		if (notifyEl && $notificationData !== '') {
+			setTimeout(() => {
+				notifyEl.display = 'none';
+				notificationData.set('');
+			}, 5000);
+		}
+	});
 </script>
 
 <svelte:head>
 	<title>Login</title>
 </svelte:head>
+{#if $notificationData}
+	<p
+		class="notification"
+		in:fly={{ x: 200, duration: 1000, delay: 1000 }}
+		out:fly={{ x: 200, duration: 1000 }}
+	>
+		{$notificationData}
+	</p>
+{/if}
 
 <section
 	class="container"
