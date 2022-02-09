@@ -109,6 +109,6 @@ export const logOutUser = async () => {
 	}
 	localStorage.removeItem('refreshToken');
 	userData.set({});
-	notificationData.set('You have logged out.')
+	notificationData.set('You have successfully logged out.')
 	await goto('/accounts/login');
 };

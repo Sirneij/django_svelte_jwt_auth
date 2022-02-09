@@ -31,6 +31,7 @@
 	};
 	onMount(() => {
 		const notifyEl = document.getElementsByClassName('notification');
+
 		if (notifyEl && $notificationData !== '') {
 			setTimeout(() => {
 				notifyEl.display = 'none';
@@ -43,15 +44,6 @@
 <svelte:head>
 	<title>Login</title>
 </svelte:head>
-{#if $notificationData}
-	<p
-		class="notification"
-		in:fly={{ x: 200, duration: 1000, delay: 1000 }}
-		out:fly={{ x: 200, duration: 1000 }}
-	>
-		{$notificationData}
-	</p>
-{/if}
 
 <section
 	class="container"

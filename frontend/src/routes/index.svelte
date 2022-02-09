@@ -30,16 +30,6 @@
 	<title>Home</title>
 </svelte:head>
 
-{#if $notificationData}
-	<p
-		class="notification"
-		in:fly={{ x: 200, duration: 1000, delay: 1000 }}
-		out:fly={{ x: 200, duration: 1000 }}
-	>
-		{$notificationData}
-	</p>
-{/if}
-
 <section in:fly={{ y: -100, duration: 500, delay: 500 }} out:fly={{ duration: 500 }}>
 	<h1>
 		<div class="welcome">
