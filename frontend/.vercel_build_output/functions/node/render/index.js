@@ -5606,6 +5606,13 @@ var init_userStore_aa4c4566 = __esm({
   }
 });
 
+// .svelte-kit/output/server/chunks/constants-528e0a86.js
+var init_constants_528e0a86 = __esm({
+  ".svelte-kit/output/server/chunks/constants-528e0a86.js"() {
+    console.log({}.VITE_BASE_API_URI);
+  }
+});
+
 // .svelte-kit/output/server/entries/pages/__layout.svelte.js
 var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
@@ -5617,6 +5624,7 @@ var init_layout_svelte = __esm({
     init_index_0f94d18f();
     init_notificationStore_67b53f18();
     init_userStore_aa4c4566();
+    init_constants_528e0a86();
     getStores = () => {
       const stores = getContext("__svelte__");
       return {
@@ -5690,8 +5698,8 @@ var entry, js, css;
 var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     init_layout_svelte();
-    entry = "pages/__layout.svelte-52f15eb8.js";
-    js = ["pages/__layout.svelte-52f15eb8.js", "chunks/vendor-37e7558d.js", "chunks/constants-3794c139.js", "chunks/singletons-a6a7384f.js", "chunks/requestUtils-be5283f7.js"];
+    entry = "pages/__layout.svelte-db69ad6f.js";
+    js = ["pages/__layout.svelte-db69ad6f.js", "chunks/vendor-37e7558d.js", "chunks/constants-922ac272.js", "chunks/singletons-a6a7384f.js", "chunks/requestUtils-03c2453c.js"];
     css = ["assets/pages/__layout.svelte-cc4d6088.css"];
   }
 });
@@ -5757,6 +5765,7 @@ var init_index_svelte = __esm({
     init_index_0f94d18f();
     init_userStore_aa4c4566();
     init_notificationStore_67b53f18();
+    init_constants_528e0a86();
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $$unsubscribe_notificationData;
       let $userData, $$unsubscribe_userData;
@@ -5788,8 +5797,8 @@ var entry3, js3, css3;
 var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     init_index_svelte();
-    entry3 = "pages/index.svelte-1a18d844.js";
-    js3 = ["pages/index.svelte-1a18d844.js", "chunks/vendor-37e7558d.js", "chunks/requestUtils-be5283f7.js", "chunks/constants-3794c139.js", "chunks/singletons-a6a7384f.js"];
+    entry3 = "pages/index.svelte-7d252c8d.js";
+    js3 = ["pages/index.svelte-7d252c8d.js", "chunks/vendor-37e7558d.js", "chunks/requestUtils-03c2453c.js", "chunks/constants-922ac272.js", "chunks/singletons-a6a7384f.js"];
     css3 = [];
   }
 });
@@ -5803,6 +5812,7 @@ var Register;
 var init_index_svelte2 = __esm({
   ".svelte-kit/output/server/entries/pages/accounts/register/index.svelte.js"() {
     init_index_0f94d18f();
+    init_constants_528e0a86();
     Register = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let email = "", fullName = "", bio = "", username = "", password = "", confirmPassword = "";
       return `${$$result.head += `${$$result.title = `<title>Register</title>`, ""}`, ""}
@@ -5832,8 +5842,8 @@ var entry4, js4, css4;
 var init__4 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     init_index_svelte2();
-    entry4 = "pages/accounts/register/index.svelte-029a11cb.js";
-    js4 = ["pages/accounts/register/index.svelte-029a11cb.js", "chunks/vendor-37e7558d.js", "chunks/constants-3794c139.js", "chunks/singletons-a6a7384f.js"];
+    entry4 = "pages/accounts/register/index.svelte-47bacaab.js";
+    js4 = ["pages/accounts/register/index.svelte-47bacaab.js", "chunks/vendor-37e7558d.js", "chunks/constants-922ac272.js", "chunks/singletons-a6a7384f.js"];
     css4 = [];
   }
 });
@@ -5848,6 +5858,7 @@ var init_index_svelte3 = __esm({
   ".svelte-kit/output/server/entries/pages/accounts/login/index.svelte.js"() {
     init_index_0f94d18f();
     init_notificationStore_67b53f18();
+    init_constants_528e0a86();
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $$unsubscribe_notificationData;
       $$unsubscribe_notificationData = subscribe(notificationData, (value) => value);
@@ -5877,8 +5888,8 @@ var entry5, js5, css5;
 var init__5 = __esm({
   ".svelte-kit/output/server/nodes/4.js"() {
     init_index_svelte3();
-    entry5 = "pages/accounts/login/index.svelte-57176d95.js";
-    js5 = ["pages/accounts/login/index.svelte-57176d95.js", "chunks/vendor-37e7558d.js", "chunks/constants-3794c139.js", "chunks/singletons-a6a7384f.js", "chunks/requestUtils-be5283f7.js"];
+    entry5 = "pages/accounts/login/index.svelte-a1517576.js";
+    js5 = ["pages/accounts/login/index.svelte-a1517576.js", "chunks/vendor-37e7558d.js", "chunks/constants-922ac272.js", "chunks/singletons-a6a7384f.js", "chunks/requestUtils-03c2453c.js"];
     css5 = [];
   }
 });
@@ -7921,7 +7932,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "robots.txt", "svelte-welcome.png", "svelte-welcome.webp"]),
   _: {
     mime: { ".png": "image/png", ".txt": "text/plain", ".webp": "image/webp" },
-    entry: { "file": "start-057982d8.js", "js": ["start-057982d8.js", "chunks/vendor-37e7558d.js", "chunks/singletons-a6a7384f.js"], "css": [] },
+    entry: { "file": "start-03eced51.js", "js": ["start-03eced51.js", "chunks/vendor-37e7558d.js", "chunks/singletons-a6a7384f.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

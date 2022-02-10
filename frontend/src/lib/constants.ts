@@ -1,1 +1,3 @@
-export const BASE_API_URI = 'http://127.0.0.1:8000/api';
+console.log(import.meta.env.VITE_BASE_API_URI);
+
+export const BASE_API_URI = 'https://django-sveltekit-jwt-auth.herokuapp.com/api'

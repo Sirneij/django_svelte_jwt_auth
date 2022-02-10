@@ -1,1 +1,0 @@
-import{D as a}from"./vendor-37e7558d.js";import{r as n}from"./singletons-a6a7384f.js";const e=a(""),c=s;async function s(o,t){return n.goto(o,t,[])}const f="http://127.0.0.1:8000/api";export{f as B,c as g,e as n};
