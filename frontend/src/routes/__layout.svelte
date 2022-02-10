@@ -31,3 +31,11 @@
 		<a href="https://github.com/Sirneij/">John O. Idogun</a>
 	</p>
 </footer>
+
+<style>
+@media (max-width: 600px){
+     .notification {
+	    width: 60%;
+      }
+}
+</style>
