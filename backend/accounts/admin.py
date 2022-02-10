@@ -32,14 +32,12 @@ class CustomUserAdmin(UserAdmin):
         'username',
         'is_staff',
         'is_active',
-
     )
     list_filter = (
         'email',
         'username',
         'is_staff',
         'is_active',
-
     )
     fieldsets = (
         (
@@ -64,7 +62,6 @@ class CustomUserAdmin(UserAdmin):
                 'fields': (
                     'is_staff',
                     'is_active',
-
                 )
             },
         ),
@@ -72,8 +69,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (
             None,
-            {'classes': ('wide',), 'fields': ('email', 'username',
-                                              'password1', 'password2', 'is_staff', 'is_active')},
+            {'classes': ('wide',), 'fields': ('email', 'username', 'password1', 'password2', 'is_staff', 'is_active')},
         ),
     )
     search_fields = (
