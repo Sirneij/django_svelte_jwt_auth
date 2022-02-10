@@ -30,9 +30,9 @@
 		})
 			.then((response) => {
 				if (response.status === 201) {
-					notificationData.update((n) => [...n, 'Registration successful. Login now.']);
+					notificationData.set('Registration successful. Login now.');
 					goto('/accounts/login');
-					console.log('User:', response.json());
+					// console.log('User:', response.json());
 				} else if (response.status === 400) {
 					console.log(response.json());
 				}
