@@ -46,7 +46,7 @@
 </script>
 
 <svelte:head>
-	<title>Register</title>
+	<title>Register | FullStack Django & SvelteKit</title>
 </svelte:head>
 
 <section

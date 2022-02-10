@@ -27,7 +27,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Home | FullStack Django & SvelteKit</title>
 </svelte:head>
 
 <section in:fly={{ y: -100, duration: 500, delay: 500 }} out:fly={{ duration: 500 }}>

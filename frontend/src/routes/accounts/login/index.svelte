@@ -42,7 +42,7 @@
 </script>
 
 <svelte:head>
-	<title>Login</title>
+	<title>Login | FullStack Django & SvelteKit</title>
 </svelte:head>
 
 <section
