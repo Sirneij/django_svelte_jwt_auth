@@ -1,6 +1,6 @@
 # django_svelte_jwt_auth
 
-This is the codebase that follows the series the tutorials on building a [FullStack JWT Authentication and Authorization System with Django and SvelteKit ][1].
+This is the codebase that follows the series of tutorials on building a [FullStack JWT Authentication and Authorization System with Django and SvelteKit ][1].
 
 To run this application locally, you need to run both the `backend` and `frontend` projects. While the latter has some instructions already for spinning it up, the former can be spinned up following the instructions below.
 
