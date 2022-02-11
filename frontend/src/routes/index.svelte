@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { userData } from '../store/userStore';
 	import { notificationData } from '../store/notificationStore';
 
@@ -16,10 +16,11 @@
 			);
 			userData.set(response);
 		}
-		const notifyEl = document.getElementsByClassName('notification');
+		const notifyEl = document.getElementById('notification') as HTMLElement;
+		// const notifyEl = document.getElementsByClassName('notification');
 		if (notifyEl && $notificationData !== '') {
 			setTimeout(() => {
-				notifyEl.display = 'none';
+				notifyEl.style.visibility = 'hidden';
 				notificationData.set('');
 			}, 5000);
 		}

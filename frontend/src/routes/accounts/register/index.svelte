@@ -1,47 +1,39 @@
-<script>
+<script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 	import { BASE_API_URI } from '$lib/constants';
 	import { notificationData } from '../../../store/notificationStore';
+	import { post } from '$lib/requestUtils';
+	import type { CustomError } from '../../../interfaces/error.interface';
+	import type { UserResponse } from '../../../interfaces/user.interface';
 
-	let email = '',
-		fullName = '',
-		bio = '',
-		username = '',
-		password = '',
-		confirmPassword = '',
-		error = '';
+	let email: string,
+		fullName: string,
+		bio: string,
+		username: string,
+		password: string,
+		confirmPassword: string,
+		errors: Array<CustomError>;
 	const submitForm = async () => {
-		await fetch(`${BASE_API_URI}/register/`, {
-			method: 'POST',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				user: {
-					email: email,
-					username: username,
-					password: password,
-					bio: bio,
-					full_name: fullName
-				}
-			})
-		})
-			.then((response) => {
-				if (response.status === 201) {
-					notificationData.set('Registration successful. Login now.');
-					goto('/accounts/login');
-					// console.log('User:', response.json());
-				} else if (response.status === 400) {
-					console.log(response.json());
-				}
-			})
-			.catch((error) => {
-				error = error;
-				console.error('Error:', error);
-			});
+		const [jsonRes, err] = await post(fetch, `${BASE_API_URI}/register/`, {
+			user: {
+				email: email,
+				username: username,
+				password: password,
+				bio: bio,
+				full_name: fullName
+			}
+		});
+		const response: UserResponse = jsonRes;
+
+		if (err.length > 0) {
+			errors = err;
+		} else if (response.user) {
+			notificationData.set('Registration successful. Login now.');
+			goto('/accounts/login');
+		}
 	};
+	console.log(errors);
 	const passwordConfirm = () => (password !== confirmPassword ? false : true);
 </script>
 
@@ -55,8 +47,10 @@
 	out:fly={{ duration: 500 }}
 >
 	<h1>Register</h1>
-	{#if error}
-		<p class="center error">{error}</p>
+	{#if errors}
+		{#each errors as error}
+			<p class="center error">{error.error}</p>
+		{/each}
 	{/if}
 	<form class="form" on:submit|preventDefault={submitForm}>
 		<input

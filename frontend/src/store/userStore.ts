@@ -1,3 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const userData = writable({});
+import type { User } from '../interfaces/user.interface'
+
+
+export const userData = writable<User>({});
