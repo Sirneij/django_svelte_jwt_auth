@@ -3,7 +3,7 @@
 	import logo from './svelte-logo.svg';
 	import john from './john.svg';
 	import { userData } from '$lib/store/userStore';
-	import { logOutUser } from '$lib/requestUtils';
+	import { logOutUser } from '$lib/utils/requestUtils';
 </script>
 
 <header>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { notificationData } from '$lib/store/notificationStore';
-	import { post, browserSet, browserGet } from '$lib/requestUtils';
+	import { post, browserSet, browserGet } from '$lib/utils/requestUtils';
 	import { goto } from '$app/navigation';
-	import { variables } from '$lib/constants';
+	import { variables } from '$lib/utils/constants';
 	import { fly } from 'svelte/transition';
 
 	import { onMount } from 'svelte';
@@ -38,7 +38,7 @@
 
 		if (notifyEl && $notificationData !== '') {
 			setTimeout(() => {
-				notifyEl.style.visibility = 'hidden';
+				notifyEl.classList.add('disappear');
 				notificationData.update(() => '');
 			}, 3000);
 		}

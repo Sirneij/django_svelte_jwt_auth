@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-	import { variables } from '$lib/constants';
-	import { getCurrentUser } from '$lib/requestUtils';
+	import { variables } from '$lib/utils/constants';
+	import { getCurrentUser } from '$lib/utils/requestUtils';
 	import type { Load } from '@sveltejs/kit';
 	import type { User } from '$lib/interfaces/user.interface';
 
@@ -30,19 +30,20 @@
 	import { notificationData } from '$lib/store/notificationStore';
 
 	import { scale } from 'svelte/transition';
-	import { UpdateField } from '$lib/requestUtils';
+	import { UpdateField } from '$lib/utils/requestUtils';
 
 	import { onMount } from 'svelte';
-	import { nodeBefore } from '$lib/whitespacesHelper';
+	import { nodeBefore } from '$lib/helpers/whitespacesHelper';
 	export let userResponse: User;
 
 	const url = `${variables.BASE_API_URI}/user/`;
+
 	onMount(() => {
 		const notifyEl = document.getElementById('notification') as HTMLElement;
 
 		if (notifyEl && $notificationData !== '') {
 			setTimeout(() => {
-				notifyEl.style.visibility = 'hidden';
+				notifyEl.classList.add('disappear');
 				notificationData.update(() => '');
 			}, 3000);
 		}

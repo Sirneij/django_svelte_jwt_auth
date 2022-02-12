@@ -109,8 +109,6 @@ class UserSerializer(serializers.ModelSerializer[User]):
 
         password = validated_data.pop('password', None)
 
-        print(validated_data)
-
         for (key, value) in validated_data.items():
             setattr(instance, key, value)
 

@@ -85,6 +85,10 @@ button {
 	align-items: center;
 	position: fixed;
 	right: 0;
+	transition: all 0.3s;
+}
+.notification.disappear {
+	visibility: hidden;
 }
 @media (max-width: 600px) {
 	.notification {

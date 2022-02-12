@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
-	import { variables } from '$lib/constants';
+	import { variables } from '$lib/utils/constants';
 	import { notificationData } from '$lib/store/notificationStore';
-	import { post } from '$lib/requestUtils';
+	import { post } from '$lib/utils/requestUtils';
 	import type { CustomError } from '$lib/interfaces/error.interface';
 	import type { UserResponse } from '$lib/interfaces/user.interface';
 

@@ -24,12 +24,18 @@
 		--size: 80px;
 	}
 	.loader-container {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate3d(-50%, -50%, 0);
-		-ms-transform: translate(-50%, -50%, 0); /* for IE 9 */
-		-webkit-transform: translate(-50%, -50%, 0); /* for Safari */
+		position: fixed;
+		top: 3rem;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #b9c6d2;
+		background: linear-gradient(180deg, #d0dde9 3%, #edf0f8 41.35%);
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 	.loader {
 		--b: 20px; /* border thickness */

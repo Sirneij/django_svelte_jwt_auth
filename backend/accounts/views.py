@@ -63,23 +63,21 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateDestroyAPIView):
 
     def get(self, request: Request, *args: tuple[Any], **kwargs: dict[str, Any]) -> Response:
         """Get request."""
-        serializer = self.serializer_class(
-            request.user, context={'request': request})
+        serializer = self.serializer_class(request.user, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def patch(self, request: Request, *args: tuple[Any], **kwargs: dict[str, Any]) -> Response:
         """Patch method."""
         serializer_data = request.data.get('user', {})
-        print(serializer_data)
-        serializer = UserSerializer(
-            request.user, data=serializer_data, partial=True)
-        print(serializer.initial_data)
+
+        serializer = UserSerializer(request.user, data=serializer_data, partial=True)
+
         if serializer.is_valid():
-            print(serializer.validated_data)
+
             user = serializer.save()
-            print(f'User full name: {user.full_name}')
+
             return Response(UserSerializer(user).data)
-        print(serializer.errors)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

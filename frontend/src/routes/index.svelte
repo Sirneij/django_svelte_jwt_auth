@@ -4,8 +4,8 @@
 
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { getCurrentUser, browserGet } from '$lib/requestUtils';
-	import { variables } from '$lib/constants';
+	import { getCurrentUser, browserGet } from '$lib/utils/requestUtils';
+	import { variables } from '$lib/utils/constants';
 
 	onMount(async () => {
 		if (browserGet('refreshToken')) {
@@ -22,7 +22,7 @@
 		// const notifyEl = document.getElementsByClassName('notification');
 		if (notifyEl && $notificationData !== '') {
 			setTimeout(() => {
-				notifyEl.style.visibility = 'hidden';
+				notifyEl.classList.add('disappear');
 				notificationData.set('');
 			}, 3000);
 		}

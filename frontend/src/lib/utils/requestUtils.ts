@@ -5,8 +5,8 @@ import type { CustomError } from '$lib/interfaces/error.interface';
 import { notificationData } from '$lib/store/notificationStore';
 import { userData } from '$lib/store/userStore';
 
-import { variables } from '$lib/constants';
-import { formatText } from '$lib/formatString';
+import { variables } from '$lib/utils/constants';
+import { formatText } from '$lib/formats/formatString';
 
 export const browserGet = (key: string): string | undefined => {
 	if (browser) {
