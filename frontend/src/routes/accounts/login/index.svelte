@@ -68,6 +68,7 @@
 			type="email"
 			aria-label="Email address"
 			placeholder="Email address"
+			required
 		/>
 		<input
 			bind:value={password}
@@ -75,6 +76,7 @@
 			type="password"
 			aria-label="password"
 			placeholder="password"
+			required
 		/>
 		<button class="btn" type="submit" on:click={(e) => changeText(e, 'Signing in...')}>Login</button
 		>
