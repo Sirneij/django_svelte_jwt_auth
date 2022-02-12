@@ -51,7 +51,6 @@
 
 	let triggerUpdate = async (e: Event) => {
 		const sibling = nodeBefore(<HTMLElement>e.target);
-		console.log(sibling.value, sibling.name);
 		await UpdateField(sibling.name, sibling.value, url);
 	};
 </script>
