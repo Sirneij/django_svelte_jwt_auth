@@ -8,6 +8,7 @@
 	import { onMount } from 'svelte';
 	import type { UserResponse } from '$lib/interfaces/user.interface';
 	import type { CustomError } from '$lib/interfaces/error.interface';
+	import { changeText } from '$lib/helpers/buttonText';
 
 	let email = '',
 		password = '',
@@ -75,7 +76,8 @@
 			aria-label="password"
 			placeholder="password"
 		/>
-		<button class="btn" type="submit">Login</button>
+		<button class="btn" type="submit" on:click={(e) => changeText(e, 'Signing in...')}>Login</button
+		>
 		<p class="center">No account yet? <a href="/accounts/register">Get started</a>.</p>
 	</form>
 </section>

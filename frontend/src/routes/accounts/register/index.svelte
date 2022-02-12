@@ -6,6 +6,7 @@
 	import { post } from '$lib/utils/requestUtils';
 	import type { CustomError } from '$lib/interfaces/error.interface';
 	import type { UserResponse } from '$lib/interfaces/user.interface';
+	import { changeText } from '$lib/helpers/buttonText';
 
 	let email: string,
 		fullName: string,
@@ -98,7 +99,9 @@
 			required
 		/>
 		{#if confirmPassword}
-			<button class="btn" type="submit">Register</button>
+			<button class="btn" type="submit" on:click={(e) => changeText(e, 'Registering...')}>
+				Register
+			</button>
 		{:else}
 			<button class="btn" type="submit" disabled>Register</button>
 		{/if}
