@@ -50,9 +50,6 @@ class CustomUserAdmin(UserAdmin):
                     'bio',
                     'full_name',
                     'birth_date',
-                    'thumbnail',
-                    'qualification',
-                    'meter_id',
                 )
             },
         ),

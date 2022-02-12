@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import logo from './svelte-logo.svg';
 	import john from './john.svg';
-	import { userData } from '../../store/userStore';
+	import { userData } from '$lib/store/userStore';
 	import { logOutUser } from '$lib/requestUtils';
 </script>
 
@@ -30,7 +30,9 @@
 				</li>
 			{:else}
 				<li>
-					Welcome, <a sveltekit:prefetch href="/accounts/user/">{$userData.username}</a>
+					Hi, <a sveltekit:prefetch href="/accounts/user/{$userData.username}-{$userData.id}"
+						>{$userData.username}</a
+					>
 				</li>
 				<li>
 					<a href={null} on:click={logOutUser} style="cursor: pointer;">Logout</a>

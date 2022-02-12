@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
-	import { BASE_API_URI } from '$lib/constants';
-	import { notificationData } from '../../../store/notificationStore';
+	import { variables } from '$lib/constants';
+	import { notificationData } from '$lib/store/notificationStore';
 	import { post } from '$lib/requestUtils';
-	import type { CustomError } from '../../../interfaces/error.interface';
-	import type { UserResponse } from '../../../interfaces/user.interface';
+	import type { CustomError } from '$lib/interfaces/error.interface';
+	import type { UserResponse } from '$lib/interfaces/user.interface';
 
 	let email: string,
 		fullName: string,
@@ -15,7 +15,7 @@
 		confirmPassword: string,
 		errors: Array<CustomError>;
 	const submitForm = async () => {
-		const [jsonRes, err] = await post(fetch, `${BASE_API_URI}/register/`, {
+		const [jsonRes, err] = await post(fetch, `${variables.BASE_API_URI}/register/`, {
 			user: {
 				email: email,
 				username: username,

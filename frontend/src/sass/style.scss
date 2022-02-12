@@ -15,4 +15,8 @@
 }
 .error {
 	color: red;
+	text-transform: capitalize;
+}
+.center.error:not(:first-of-type) {
+	margin-top: 0.1rem;
 }

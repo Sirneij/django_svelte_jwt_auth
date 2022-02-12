@@ -1,8 +1,9 @@
 from typing import Any, Optional
 
 from django.conf import settings
-from rest_framework import status
-from rest_framework.generics import RetrieveUpdateAPIView
+from django.shortcuts import get_object_or_404
+from rest_framework import parsers, status
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -49,28 +50,37 @@ class LoginAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+class UserRetrieveUpdateAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
     renderer_classes = (UserJSONRenderer,)
     serializer_class = UserSerializer
+    lookup_url_kwarg = 'id'
+    parser_classes = [
+        parsers.JSONParser,
+        parsers.FormParser,
+        parsers.MultiPartParser,
+    ]
 
-    def retrieve(self, request: Request, *args: dict[str, Any], **kwargs: dict[str, Any]) -> Response:
-        """Return user on GET request."""
-        serializer = self.serializer_class(request.user, context={'request': request})
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def update(self, request: Request, *args: dict[str, Any], **kwargs: dict[str, Any]) -> Response:
-        """Return updated user."""
-        serializer_data = request.data.get('user', {})
-
+    def get(self, request: Request, *args: tuple[Any], **kwargs: dict[str, Any]) -> Response:
+        """Get request."""
         serializer = self.serializer_class(
-            request.user, data=serializer_data, partial=True, context={'request': request}
-        )
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
+            request.user, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def patch(self, request: Request, *args: tuple[Any], **kwargs: dict[str, Any]) -> Response:
+        """Patch method."""
+        serializer_data = request.data.get('user', {})
+        print(serializer_data)
+        serializer = UserSerializer(
+            request.user, data=serializer_data, partial=True)
+        print(serializer.initial_data)
+        if serializer.is_valid():
+            print(serializer.validated_data)
+            user = serializer.save()
+            print(f'User full name: {user.full_name}')
+            return Response(UserSerializer(user).data)
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LogoutAPIView(APIView):

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { notificationData } from '../../../store/notificationStore';
+	import { notificationData } from '$lib/store/notificationStore';
 	import { post, browserSet, browserGet } from '$lib/requestUtils';
 	import { goto } from '$app/navigation';
-	import { BASE_API_URI } from '$lib/constants';
+	import { variables } from '$lib/constants';
 	import { fly } from 'svelte/transition';
 
 	import { onMount } from 'svelte';
-	import type { UserResponse } from '../../../interfaces/user.interface';
-	import type { CustomError } from '../../../interfaces/error.interface';
+	import type { UserResponse } from '$lib/interfaces/user.interface';
+	import type { CustomError } from '$lib/interfaces/error.interface';
 
 	let email = '',
 		password = '',
@@ -17,7 +17,7 @@
 		if (browserGet('refreshToken')) {
 			localStorage.removeItem('refreshToken');
 		}
-		const [jsonRes, err] = await post(fetch, `${BASE_API_URI}/login/`, {
+		const [jsonRes, err] = await post(fetch, `${variables.BASE_API_URI}/login/`, {
 			user: {
 				email: email,
 				password: password
@@ -39,8 +39,8 @@
 		if (notifyEl && $notificationData !== '') {
 			setTimeout(() => {
 				notifyEl.style.visibility = 'hidden';
-				notificationData.set('');
-			}, 5000);
+				notificationData.update(() => '');
+			}, 3000);
 		}
 	});
 </script>
