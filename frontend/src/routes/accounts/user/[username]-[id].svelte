@@ -2,7 +2,7 @@
 	import { variables } from '$lib/utils/constants';
 	import { getCurrentUser } from '$lib/utils/requestUtils';
 	import type { Load } from '@sveltejs/kit';
-	import type { User } from '$lib/interfaces/user.interface';
+	import type { User, UserResponse } from '$lib/interfaces/user.interface';
 
 	export const load: Load = async ({ fetch }) => {
 		const [userRes, errs] = await getCurrentUser(
@@ -35,17 +35,26 @@
 
 	const url = `${variables.BASE_API_URI}/user/`;
 
+	let updateResponse: UserResponse; // updated response from the update
 	let triggerUpdate = async (e: Event) => {
 		const sibling = nodeBefore(<HTMLElement>e.target);
-		await UpdateField(sibling.name, sibling.value, url);
+		const [res, err] = await UpdateField(sibling.name, sibling.value, url);
+		if (err.length <= 0) {
+			updateResponse = res; //assigns the response to the updated response if no errors
+		}
 	};
-	$: userResponse;
+	let currentUserData: User;
+	$: userResponse,
+		(() => {
+			currentUserData = userResponse;
+			if (updateResponse) currentUserData = updateResponse.user; // if updated data is available, update the currentUserData too...
+		})();
 </script>
 
 <div class="container" transition:scale|local={{ start: 0.7, delay: 500 }}>
-	{#if userResponse.id}
+	{#if currentUserData.id}
 		<h1>
-			{userResponse.full_name ? userResponse.full_name : userResponse.username} profile
+			{currentUserData.full_name ? currentUserData.full_name : currentUserData.username} profile
 		</h1>
 	{/if}
 
@@ -56,7 +65,7 @@
 				type="text"
 				placeholder="User's full name"
 				name="full_name"
-				value={userResponse.full_name}
+				value={currentUserData.full_name}
 			/>
 			<button class="save" aria-label="Save user's full name" on:click={(e) => triggerUpdate(e)} />
 		</div>
@@ -68,7 +77,7 @@
 				type="text"
 				placeholder="User's username"
 				name="username"
-				value={userResponse.username}
+				value={currentUserData.username}
 			/>
 			<button class="save" aria-label="Save user's username" on:click={(e) => triggerUpdate(e)} />
 		</div>
@@ -80,7 +89,7 @@
 				placeholder="User's email"
 				type="email"
 				name="email"
-				value={userResponse.email}
+				value={currentUserData.email}
 			/>
 			<button class="save" aria-label="Save user's email" on:click={(e) => triggerUpdate(e)} />
 		</div>
@@ -92,7 +101,7 @@
 				placeholder="User's bio"
 				type="text"
 				name="bio"
-				value={userResponse.bio}
+				value={currentUserData.bio}
 			/>
 			<button class="save" aria-label="Save user's bio" on:click={(e) => triggerUpdate(e)} />
 		</div>
@@ -104,7 +113,7 @@
 				type="date"
 				name="birth_date"
 				placeholder="User's date of birth"
-				value={userResponse.birth_date}
+				value={currentUserData.birth_date}
 			/>
 			<button
 				class="save"

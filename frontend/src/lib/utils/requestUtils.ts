@@ -163,7 +163,7 @@ export const handlePostRequestsWithPermissions = async (
 			console.error(errs);
 			return [{}, errs];
 		}
-		return [jres.json(), []];
+		return [await jres.json(), []];
 	} else if (method === 'POST') {
 		if (jres.status !== 201) {
 			const data = await jres.json();
