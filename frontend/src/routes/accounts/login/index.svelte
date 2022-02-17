@@ -5,7 +5,6 @@
 	import { variables } from '$lib/utils/constants';
 	import { fly } from 'svelte/transition';
 
-	import { onMount } from 'svelte';
 	import type { UserResponse } from '$lib/interfaces/user.interface';
 	import type { CustomError } from '$lib/interfaces/error.interface';
 	import { changeText } from '$lib/helpers/buttonText';
@@ -30,20 +29,10 @@
 			errors = err;
 		} else if (response.user) {
 			browserSet('refreshToken', response.user.tokens.refresh);
-			notificationData.set('Login successful.');
+			notificationData.update(() => 'Login successful...');
 			await goto('/');
 		}
 	};
-	onMount(() => {
-		const notifyEl = document.getElementById('notification') as HTMLElement;
-
-		if (notifyEl && $notificationData !== '') {
-			setTimeout(() => {
-				notifyEl.classList.add('disappear');
-				notificationData.update(() => '');
-			}, 3000);
-		}
-	});
 </script>
 
 <svelte:head>

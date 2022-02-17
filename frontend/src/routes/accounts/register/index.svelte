@@ -30,8 +30,8 @@
 		if (err.length > 0) {
 			errors = err;
 		} else if (response.user) {
-			notificationData.set('Registration successful. Login now.');
-			goto('/accounts/login');
+			notificationData.update(() => 'Registration successful. Login now...');
+			await goto('/accounts/login');
 		}
 	};
 	console.log(errors);

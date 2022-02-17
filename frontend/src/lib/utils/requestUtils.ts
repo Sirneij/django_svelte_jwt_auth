@@ -124,7 +124,7 @@ export const logOutUser = async (): Promise<void> => {
 	}
 	localStorage.removeItem('refreshToken');
 	userData.set({});
-	notificationData.set('You have successfully logged out.');
+	notificationData.update(() => 'You have successfully logged out...');
 	await goto('/accounts/login');
 };
 
@@ -196,6 +196,6 @@ export const UpdateField = async (
 		return [{}, err];
 	}
 	console.log(response);
-	notificationData.set(`${formatText(fieldName)} has been updated successfully.`);
+	notificationData.update(() => `${formatText(fieldName)} has been updated successfully.`);
 	return [response, []];
 };

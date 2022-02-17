@@ -1,32 +1,7 @@
 <script lang="ts">
 	import { userData } from '$lib/store/userStore';
-	import { notificationData } from '$lib/store/notificationStore';
 
 	import { fly } from 'svelte/transition';
-	import { onMount } from 'svelte';
-	import { getCurrentUser, browserGet } from '$lib/utils/requestUtils';
-	import { variables } from '$lib/utils/constants';
-
-	onMount(async () => {
-		if (browserGet('refreshToken')) {
-			const [response, errs] = await getCurrentUser(
-				fetch,
-				`${variables.BASE_API_URI}/token/refresh/`,
-				`${variables.BASE_API_URI}/user/`
-			);
-			if (errs.length <= 0) {
-				userData.set(response);
-			}
-		}
-		const notifyEl = document.getElementById('notification') as HTMLElement;
-		// const notifyEl = document.getElementsByClassName('notification');
-		if (notifyEl && $notificationData !== '') {
-			setTimeout(() => {
-				notifyEl.classList.add('disappear');
-				notificationData.set('');
-			}, 3000);
-		}
-	});
 </script>
 
 <svelte:head>

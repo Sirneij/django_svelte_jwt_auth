@@ -27,32 +27,19 @@
 </script>
 
 <script lang="ts">
-	import { notificationData } from '$lib/store/notificationStore';
-
 	import { scale } from 'svelte/transition';
 	import { UpdateField } from '$lib/utils/requestUtils';
 
-	import { onMount } from 'svelte';
 	import { nodeBefore } from '$lib/helpers/whitespacesHelper';
 	export let userResponse: User;
 
 	const url = `${variables.BASE_API_URI}/user/`;
 
-	onMount(() => {
-		const notifyEl = document.getElementById('notification') as HTMLElement;
-
-		if (notifyEl && $notificationData !== '') {
-			setTimeout(() => {
-				notifyEl.classList.add('disappear');
-				notificationData.update(() => '');
-			}, 3000);
-		}
-	});
-
 	let triggerUpdate = async (e: Event) => {
 		const sibling = nodeBefore(<HTMLElement>e.target);
 		await UpdateField(sibling.name, sibling.value, url);
 	};
+	$: userResponse;
 </script>
 
 <div class="container" transition:scale|local={{ start: 0.7, delay: 500 }}>
