@@ -34,7 +34,6 @@
 			await goto('/accounts/login');
 		}
 	};
-	console.log(errors);
 	const passwordConfirm = () => (password !== confirmPassword ? false : true);
 </script>
 

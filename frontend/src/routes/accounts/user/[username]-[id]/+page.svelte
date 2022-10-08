@@ -1,53 +1,31 @@
-<script context="module" lang="ts">
-	import { variables } from '$lib/utils/constants';
-	import { getCurrentUser } from '$lib/utils/requestUtils';
-	import type { Load } from '@sveltejs/kit';
-	import type { User, UserResponse } from '$lib/interfaces/user.interface';
-
-	export const load: Load = async ({ fetch }) => {
-		const [userRes, errs] = await getCurrentUser(
-			fetch,
-			`${variables.BASE_API_URI}/token/refresh/`,
-			`${variables.BASE_API_URI}/user/`
-		);
-
-		const userResponse: User = userRes;
-
-		if (errs.length > 0 && !userResponse.id) {
-			return {
-				status: 302,
-				redirect: '/accounts/login'
-			};
-		}
-
-		return {
-			props: { userResponse }
-		};
-	};
-</script>
-
 <script lang="ts">
 	import { scale } from 'svelte/transition';
 	import { UpdateField } from '$lib/utils/requestUtils';
 
 	import { nodeBefore } from '$lib/helpers/whitespacesHelper';
-	export let userResponse: User;
+	import { variables } from '$lib/utils/constants';
+	import type { User, UserResponse } from '$lib/interfaces/user.interface';
+	export let data: any;
 
 	const url = `${variables.BASE_API_URI}/user/`;
 
 	let updateResponse: UserResponse; // updated response from the update
 	let triggerUpdate = async (e: Event) => {
 		const sibling = nodeBefore(<HTMLElement>e.target);
-		const [res, err] = await UpdateField(sibling.name, sibling.value, url);
-		if (err.length <= 0) {
-			updateResponse = res; //assigns the response to the updated response if no errors
+		if (sibling) {
+			const [res, err] = await UpdateField(sibling.name, sibling.value, url);
+			if (err.length <= 0) {
+				updateResponse = res; //assigns the response to the updated response if no errors
+			}
 		}
 	};
 	let currentUserData: User;
-	$: userResponse,
+	$: data.userResponse,
 		(() => {
-			currentUserData = userResponse;
-			if (updateResponse) currentUserData = updateResponse.user; // if updated data is available, update the currentUserData too...
+			currentUserData = data.userResponse;
+			if (updateResponse && updateResponse.user) {
+				currentUserData = updateResponse.user; // if updated data is available, update the currentUserData too...
+			}
 		})();
 </script>
 

@@ -67,3 +67,6 @@ todo.txt
 
 kyc/*
 !src/lib/validators/kyc
+
+.vercel
+.vercel_build_output

@@ -1,4 +1,4 @@
-import { browser } from '$app/env';
+import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import type { Token, UserResponse } from '$lib/interfaces/user.interface';
 import type { CustomError } from '$lib/interfaces/error.interface';
@@ -15,7 +15,7 @@ export const browserGet = (key: string): string | undefined => {
 			return item;
 		}
 	}
-	return null;
+	return undefined;
 };
 
 export const browserSet = (key: string, value: string): void => {
@@ -25,12 +25,12 @@ export const browserSet = (key: string, value: string): void => {
 };
 
 export const post = async (
-	fetch,
+	fetch: any,
 	url: string,
 	body: unknown
 ): Promise<[object, Array<CustomError>]> => {
 	try {
-		const headers = {};
+		const headers = {'Content-Type': 'application/octet-stream', 'Authorization': ''};
 		if (!(body instanceof FormData)) {
 			headers['Content-Type'] = 'application/json';
 			body = JSON.stringify(body);
@@ -54,14 +54,13 @@ export const post = async (
 			return [response, []];
 		}
 	} catch (error) {
-		console.error(`Error outside: ${error}`);
-		const errors: Array<CustomError> = [{ error: 'An unknown error occurred.' }, { error: error }];
+		const errors: Array<CustomError> = [{ error: 'An unknown error occurred.' }, { error: `${error} `}];
 		return [{}, errors];
 	}
 };
 
 export const getCurrentUser = async (
-	fetch,
+	fetch: any,
 	refreshUrl: string,
 	userUrl: string
 ): Promise<[object, Array<CustomError>]> => {
@@ -129,7 +128,7 @@ export const logOutUser = async (): Promise<void> => {
 };
 
 export const handlePostRequestsWithPermissions = async (
-	fetch,
+	fetch: any,
 	targetUrl: string,
 	body: unknown,
 	method = 'POST'
@@ -192,10 +191,8 @@ export const UpdateField = async (
 
 	const [response, err] = await handlePostRequestsWithPermissions(fetch, url, formData, 'PATCH');
 	if (err.length > 0) {
-		console.log(err);
 		return [{}, err];
 	}
-	console.log(response);
 	notificationData.update(() => `${formatText(fieldName)} has been updated successfully.`);
 	return [response, []];
 };

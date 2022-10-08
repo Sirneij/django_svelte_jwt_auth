@@ -6,10 +6,10 @@
 	import { fly } from 'svelte/transition';
 	import { afterUpdate, onMount } from 'svelte';
 
-	import Header from '../components/Header/Header.svelte';
-	import Loader from '../components/Loader/Loader.svelte';
+	import Header from '$lib/components/Header/Header.svelte';
+	import Loader from '$lib/components/Loader/Loader.svelte';
 
-	import '../dist/css/style.min.css';
+	import '$lib/dist/css/style.min.css';
 
 	$: loading.setNavigate(!!$navigating);
 	$: loading.setLoading(!!$navigating, 'Loading, please wait...');

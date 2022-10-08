@@ -28,7 +28,9 @@
 		if (err.length > 0) {
 			errors = err;
 		} else if (response.user) {
-			browserSet('refreshToken', response.user.tokens.refresh);
+			if (response.user.tokens && response.user.tokens.refresh) {
+				browserSet('refreshToken', response.user.tokens.refresh);
+			}
 			notificationData.update(() => 'Login successful...');
 			await goto('/');
 		}
